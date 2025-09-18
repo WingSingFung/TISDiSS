@@ -1,1 +1,3 @@
-Code is comming soon.
+# Office code for TISDiSS: A Training- and Inference-Time Scalable Framework for Discriminative Source Separation.
+
+Code is comming soon ...
