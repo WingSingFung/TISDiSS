@@ -1,0 +1,8 @@
+separator_conf:
+  encoder_decoder: false
+  encoder_multi_decoder: false
+  encoder_n_layers_multi_decoder: false
+  reconstructor_multi_decoder: false
+  reconstructor_n_layers_multi_decoder: false
+  reconstructor_repeat_times: 2
+  spliter_loss: false

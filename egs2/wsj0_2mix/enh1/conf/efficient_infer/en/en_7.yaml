@@ -1,0 +1,4 @@
+separator_conf:
+  encoder_multi_decoder: false
+  encoder_n_layers_multi_decoder: false
+  encoder_repeat_times: 7
