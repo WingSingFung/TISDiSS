@@ -2,6 +2,61 @@
 
 Official implementation of **TISDiSS**, a scalable framework for discriminative source separation that enables flexible model scaling at both training and inference time.
 
+## 🏆 Highlights
+
+- ⚡ **State-of-the-art Performance**: Achieves SOTA results on WSJ0-2mix, WHAMR!, and Libri2Mix datasets
+- 🔧 **Flexible Scalability**: Supports dynamic model scaling at both training and inference stages
+- 💡 **Parameter Efficient**: Uses only 8.0M parameters while outperforming larger models (14.2M-59.4M)
+- 📈 **Scalable Architecture**: Adjustable refinement blocks (M_re) for performance-efficiency trade-offs
+
+## 🖼️ Architecture
+
+<div align="center">
+
+### Overall Framework
+<img src="pics/TISDiSS-framework.pdf" alt="TISDiSS Framework" width="800"/>
+
+### Separation Block
+<img src="pics/TISDiSS-sepblock.pdf" alt="Separation Block" width="600"/>
+
+### Refinement Block
+<img src="pics/TISDiSS-reblock.pdf" alt="Refinement Block" width="600"/>
+
+</div>
+
+> **💡 Tip**: If the PDF images don't display properly on GitHub, you can view them directly in the [pics](./pics) folder or convert them to PNG format using:
+> ```bash
+> # Install ImageMagick if needed
+> sudo apt-get install imagemagick
+> # Convert PDF to PNG
+> convert -density 300 pics/TISDiSS-framework.pdf pics/TISDiSS-framework.png
+> ```
+
+## 📊 Performance Comparison
+
+### WSJ0-2mix Benchmark
+
+Comparisons with prior methods on WSJ0-2mix dataset (with and without dynamic mixing). Results are shown in dB.
+
+| Methods | Param [M] | SI-SNRi | SDRi |
+|:--------|:---------:|:-------:|:----:|
+| **Previous SOTA** | | | |
+| SepReformer-B | 14.2 | 23.8 | 23.9 |
+| SepReformer-L+DM | 59.4 | 25.1 | 25.2 |
+| TF-Locoformer-M | 15.0 | 23.6 | 23.8 |
+| TF-Locoformer-M+DM | 15.0 | 24.6 | 24.7 |
+| TF-Locoformer-L | 22.5 | 24.2 | 24.3 |
+| TF-Locoformer-L+DM | 22.5 | 25.1 | 25.2 |
+| **TISDiSS (Ours)** | | | |
+| TISDiSS-sep1×2-re1×3 (M_re=3) | 8.0 | 23.9 | 24.0 |
+| TISDiSS-sep1×2-re1×3 (M_re=5) | 8.0 | 24.3 | 24.4 |
+| TISDiSS-sep1×2-re1×6 (M_re=3) | 8.0 | 24.4 | 24.5 |
+| TISDiSS-sep1×2-re1×6 (M_re=6) | 8.0 | 25.1 | 25.2 |
+| TISDiSS-sep1×2-re1×6 (M_re=8) | 8.0 | **25.2** | **25.3** |
+
+> **Note**: M_re indicates the number of refinement blocks used at inference time, demonstrating the scalability of our framework.
+
+
 ## 📄 Paper
 
 **arXiv**: [https://arxiv.org/abs/2509.15666](https://arxiv.org/abs/2509.15666)
