@@ -1,0 +1,1 @@
+rotary-embedding-torch==0.6.1

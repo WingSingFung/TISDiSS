@@ -8,7 +8,26 @@ Official implementation of TISDiSS, a scalable framework for discriminative sour
 
 🎯 **Status**: Submitted to ICASSP 2026
 
-## Code Release
+## Environmental setup:
+
+pip install -r requirements.txt
+
+## Infer
+
+```sh
+# Go to the corresponding example directory.
+cd egs2/wsj0_2mix/enh1
+
+# Data preparation and stats collection if necessary.
+# NOTE: please fill the corresponding part of db.sh for data preparation.
+# You need to download the WSJ0 dataset by yourself which may costs money.
+./run.sh --stage 1 --stop_stage 5
+
+# Inference. You can change the number of re like:for re in 3 6 8; do ... done for different M_re settings.
+./infer_run.sh
+```
+
+## Training Code Release
 
 The complete training code based on ESPnet-Enh will be released upon paper acceptance.
 
