@@ -1,39 +1,118 @@
 # TISDiSS: Training- and Inference-Time Scalable Framework for Discriminative Source Separation
 
-Official implementation of TISDiSS, a scalable framework for discriminative source separation.
+Official implementation of **TISDiSS**, a scalable framework for discriminative source separation that enables flexible model scaling at both training and inference time.
 
-## Paper
+## 📄 Paper
 
-📄 **arXiv**: https://arxiv.org/abs/2509.15666
+**arXiv**: [https://arxiv.org/abs/2509.15666](https://arxiv.org/abs/2509.15666)
 
-🎯 **Status**: Submitted to ICASSP 2026
+**Status**: Submitted to ICASSP 2026
 
-## Environmental setup:
+---
 
+## 🚀 Quick Start
+
+### Environment Setup
+
+Install the required dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
-## Infer
+### Inference
 
-```sh
-# Go to the corresponding example directory.
+Run inference on your audio files:
+
+```bash
 cd egs2/wsj0_2mix/enh1
 
-# Data preparation and stats collection if necessary.
-# NOTE: please fill the corresponding part of db.sh for data preparation.
-# You need to download the WSJ0 dataset by yourself which may costs money.
-./run.sh --stage 1 --stop_stage 5
+python separate.py \
+    --model_path ./exp/enh_train_enh_tflocoformer_pretrained/valid.loss.ave_5best.pth \
+    --audio_path /path/to/input_audio \
+    --audio_output_dir /path/to/output_directory
+```
 
-# Inference. You can change the number of re like:for re in 3 6 8; do ... done for different M_re settings.
+---
+
+## 🔧 Training
+
+### 1. Data Preparation
+
+Navigate to the example directory:
+
+```bash
+cd egs2/wsj0_2mix/enh1
+```
+
+**Note**: You need to download the WSJ0 dataset separately (commercial license required).
+
+#### Option A: WSJ0 in WAV format
+If your WSJ0 dataset is already in WAV format, create a symbolic link:
+
+```bash
+mkdir -p ./data/wsj0
+ln -s /path/to/your/WSJ0 ./data/wsj0/wsj0
+```
+
+Alternatively, modify line 24 in `./local/data.sh` to point to your WSJ0 path:
+```bash
+wsj_full_wav=/path/to/your/WSJ0/
+```
+
+#### Option B: WSJ0 in other formats
+If your dataset is not in WAV format:
+1. Uncomment lines 76-81 in `./local/data.sh`
+2. Fill in the `WSJ0=` path in `db.sh`
+
+### 2. Preprocessing
+
+Run data preparation and statistics collection:
+
+```bash
+./run.sh --stage 1 --stop_stage 5
+```
+
+### 3. Model Training
+
+Train the TISDiSS model:
+
+```bash
+CUDA_VISIBLE_DEVICES=1 ./run.sh \
+    --stage 6 \
+    --stop_stage 6 \
+    --enh_config conf/efficient_train/tisdiss/train_enh_tisdiss_tflocoformer_en-residual_en1x2_re1x6_l1+1x6.yaml \
+    --ngpu 1
+```
+
+### 4. Inference with Different Scalability Settings
+
+Run inference with various refinement block configurations (M_re):
+
+```bash
 ./infer_run.sh
 ```
 
-## Training Code Release
+You can modify the script to test different M_re settings:
+```bash
+for re in 3 6 8; do
+    # Your inference commands here
+done
+```
 
-The complete training code based on ESPnet-Enh will be released upon paper acceptance.
+---
 
-## Citation
+## 📝 Note
 
-If you find this work useful, please cite:
+This repository contains a streamlined version of ESPnet-Enh, specifically designed for easier training and inference of TISDiSS. The full ESPnet framework can be complex for new users, so we provide this simplified codebase focused on our method.
+
+For more examples, additional features, and the complete ESPnet-Enh toolkit, please refer to the [ESPnet-Enh repository](https://github.com/espnet/espnet).
+
+---
+
+## 📚 Citation
+
+If you find this work useful in your research, please consider citing:
 
 ```bibtex
 @misc{feng2025tisdisstrainingtimeinferencetimescalable,
@@ -46,3 +125,9 @@ If you find this work useful, please cite:
       url={https://arxiv.org/abs/2509.15666}, 
 }
 ```
+
+---
+
+## 📧 Contact
+
+For questions or issues, please open an issue on GitHub or contact the authors.

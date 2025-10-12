@@ -1,1 +1,7 @@
 rotary-embedding-torch==0.6.1
+
+
+# If you already have torch and torchvision installed, I think any version is fine.
+# torch
+# torchvision
+# torchaudio

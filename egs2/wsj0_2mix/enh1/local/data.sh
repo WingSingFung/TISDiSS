@@ -21,7 +21,7 @@ EOF
 
 . ./db.sh
 
-wsj_full_wav=$PWD/data/wsj0/
+wsj_full_wav=$PWD/data/wsj0
 wsj_mix_wav=$PWD/data/wsj0_mix
 wsj_mix_scripts=$PWD/data/wsj0_mix/scripts
 wsj_scp_output_dir=$PWD/data
@@ -55,31 +55,31 @@ recog_set="tt_"${min_or_max}_${sample_rate}
 stage=0
 stop_stage=100
 
-### This part is for WSJ0 mix
-### Download mixture scripts and create mixtures for 2 speakers
-# if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
-#     log "stage 0: Prepare simulation scripts and convert WSJ0 to wav"
-#     echo "Downloading WSJ0_mixture scripts."
+## This part is for WSJ0 mix
+## Download mixture scripts and create mixtures for 2 speakers
+if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
+    log "stage 0: Prepare simulation scripts and convert WSJ0 to wav"
+    echo "Downloading WSJ0_mixture scripts."
 
-#     if [ ! -e ${wsj_mix_scripts} ]; then
-#         mkdir -p ${wsj_mix_scripts}
-#         git clone https://github.com/mpariente/pywsj0-mix.git ${wsj_mix_scripts}
-#         cp local/create_wsj_scp.py ${wsj_mix_scripts}
+    if [ ! -e ${wsj_mix_scripts} ]; then
+        mkdir -p ${wsj_mix_scripts}
+        git clone https://github.com/mpariente/pywsj0-mix.git ${wsj_mix_scripts}
+        cp local/create_wsj_scp.py ${wsj_mix_scripts}
 
-#         # remove original script and copy multi-thred version to speed-up data preparation
-#         rm ${wsj_mix_scripts}/generate_wsjmix.py
-#         cp local/generate_wsjmix.py ${wsj_mix_scripts}
-#     else
-#         echo "${wsj_mix_scripts} already exists. Skip downloading the simulation script."
-#     fi
+        # remove original script and copy multi-thred version to speed-up data preparation
+        rm ${wsj_mix_scripts}/generate_wsjmix.py
+        cp local/generate_wsjmix.py ${wsj_mix_scripts}
+    else
+        echo "${wsj_mix_scripts} already exists. Skip downloading the simulation script."
+    fi
 
-#     # if [ ! -e ${wsj_full_wav} ]; then
-#     #     echo "WSJ0 wav file."
-#     #     local/convert2wav.sh ${WSJ0} ${wsj_full_wav} || exit 1;
-#     # else
-#     #     echo "${wsj_full_wav} already exists. Skip the process to convert wsj0 to wav."
-#     # fi
-# fi
+    # if [ ! -e ${wsj_full_wav} ]; then
+    #     echo "WSJ0 wav file."
+    #     local/convert2wav.sh ${WSJ0} ${wsj_full_wav} || exit 1;
+    # else
+    #     echo "${wsj_full_wav} already exists. Skip the process to convert wsj0 to wav."
+    # fi
+fi
 if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
     log "stage 1: Data simulation"
     for nsrc in 2; do
