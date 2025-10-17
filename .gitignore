@@ -1,3 +1,7 @@
+# TISDiSS keep
+!egs2/wsj0_2mix/enh1/exp/enh_train_enh_tisdiss_tflocoformer_en-residual_en1x2_re1x6_l1+1x6_raw/
+!egs2/wsj0_2mix/enh1/exp/enh_train_enh_tisdiss_tflocoformer_en-residual_en1x2_re1x6_l1+1x6_raw/*
+
 # general
 *~
 *.pyc
