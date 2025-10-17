@@ -8,6 +8,10 @@
 
 Official implementation of **TISDiSS**, a scalable framework for discriminative source separation that enables flexible model scaling at both training and inference time.
 
+## News
+
+- **[2025-10-18]** We release the code and [pre-trained model](egs2/wsj0_2mix/enh1/exp/enh_train_enh_tisdiss_tflocoformer_en-residual_en1x2_re1x6_l1+1x6_raw) of TISDiSS! 🚀 [Hugging Face](https://huggingface.co/WingsingFung/TISDiSS)
+
 ## 🏆 Highlights
 
 - **State-of-the-art Performance**: Achieves SOTA results on WSJ0-2mix, WHAMR!, and Libri2Mix datasets
@@ -51,6 +55,11 @@ Official implementation of **TISDiSS**, a scalable framework for discriminative 
 ---
 
 ## 🚀 Quick Start
+
+```bash
+git clone https://github.com/WingSingFung/TISDiSS.git
+cd TISDiSS
+```
 
 ### Environment Setup
 
