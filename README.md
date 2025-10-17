@@ -1,13 +1,18 @@
 # TISDiSS: Training-Time and Inference-Time Scalable Framework for Discriminative Source Separation
 
+<p align="center">
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=WingSingFung.TISDiSS" alt="访客统计" />
+  <img src="https://img.shields.io/github/stars/WingSingFung/TISDiSS?style=social" alt="GitHub stars" />
+  <img alt="Static Badge" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" />
+</p>
+
 Official implementation of **TISDiSS**, a scalable framework for discriminative source separation that enables flexible model scaling at both training and inference time.
 
 ## 🏆 Highlights
 
 - **State-of-the-art Performance**: Achieves SOTA results on WSJ0-2mix, WHAMR!, and Libri2Mix datasets
-- **Dynamic Inference**: Adjustable Reconstruction blocks repeat times(N_re) at inference stage for performance-efficiency trade-offs without training a new model
-- **Effective training strategy for low-latency separation**: Training with more inference repetitions consistently improves shallow-inference performance, offering
-a practical solution for low-latency separation.
+- **Dynamic Inference**: Adjustable Reconstruction block repeat times (N_re) at inference stage for performance-efficiency trade-offs without retraining
+- **Effective Training Strategy for Low-Latency Separation**: Training with more inference repetitions consistently improves shallow-inference performance, offering a practical solution for low-latency separation
 
 ## 🖼️ Architecture
 
@@ -57,7 +62,7 @@ pip install -r requirements.txt
 
 ### Inference
 
-Run inference on your audio files:
+Navigate to the example directory and run inference on your audio files:
 
 ```bash
 cd egs2/wsj0_2mix/enh1
@@ -67,6 +72,11 @@ python separate.py \
     --audio_path /path/to/input_audio \
     --audio_output_dir /path/to/output_directory
 ```
+
+**Parameters:**
+- `--model_path`: Path to the pre-trained model checkpoint
+- `--audio_path`: Path to input audio file or directory
+- `--audio_output_dir`: Directory where separated audio will be saved
 
 ---
 
@@ -82,7 +92,7 @@ cd egs2/wsj0_2mix/enh1
 
 **Note**: You need to download the WSJ0 dataset separately (commercial license required).
 
-#### Option A: WSJ0 in WAV format
+#### Option A: WSJ0 in WAV Format
 
 If your WSJ0 dataset is already in WAV format, create a symbolic link:
 
@@ -97,9 +107,9 @@ Alternatively, modify line 24 in `./local/data.sh` to point to your WSJ0 path:
 wsj_full_wav=/path/to/your/WSJ0/
 ```
 
-#### Option B: WSJ0 in original formats
+#### Option B: WSJ0 in Original Format
 
-If your dataset is original WSJ0 format:
+If your dataset is in the original WSJ0 format:
 
 1. Uncomment lines 76-81 in `./egs2/wsj0_2mix/enh1/local/data.sh`
 2. Fill in the `WSJ0=` path in `db.sh`
@@ -114,7 +124,7 @@ Run data preparation and statistics collection:
 
 ### 3. Model Training
 
-Train the TISDiSS model:
+Train the TISDiSS model with the following command:
 
 ```bash
 CUDA_VISIBLE_DEVICES=1 ./run.sh \
@@ -124,6 +134,11 @@ CUDA_VISIBLE_DEVICES=1 ./run.sh \
     --ngpu 1
 ```
 
+**Training Configuration:**
+- The model uses TF-Locoformer as the backbone
+- Training configuration: 2 Encoder blocks + 6 Reconstruction blocks
+- Adjust `--ngpu` to use multiple GPUs if available
+
 ### 4. Inference with Different Scalability Settings
 
 Run inference with various Reconstruction block configurations (N_re):
@@ -132,7 +147,7 @@ Run inference with various Reconstruction block configurations (N_re):
 ./infer_run.sh
 ```
 
-You can modify the script to test different N_re settings:
+You can modify the script to test different N_re values:
 
 ```bash
 for re in 3 6 8; do
@@ -144,9 +159,9 @@ done
 
 ## 📝 Note
 
-This repository contains a streamlined version of ESPnet-Enh for easier training and inference of TISDiSS. The full ESPnet framework can be complex for new users, so we provide this simplified codebase focused on our method.
+This repository contains a streamlined version of ESPnet-Enh, designed for easier training and inference of TISDiSS. Since the full ESPnet framework can be complex for new users, we provide this simplified codebase focused specifically on our method.
 
-For more examples, additional features, and the complete ESPnet-Enh toolkit, please refer to the [ESPnet-Enh repository](https://github.com/espnet/espnet).
+For additional examples, features, and the complete ESPnet-Enh toolkit, please refer to the [ESPnet-Enh repository](https://github.com/espnet/espnet).
 
 ---
 
@@ -170,4 +185,4 @@ If you find this work useful in your research, please consider citing:
 
 ## 📧 Contact
 
-For questions or issues, please open an issue on GitHub or contact the authors.
+For questions or issues, please open an issue on [GitHub](https://github.com/WingSingFung/TISDiSS/issues) or contact the authors.
