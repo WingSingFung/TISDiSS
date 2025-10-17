@@ -1,0 +1,1 @@
+./enh.sh --train_set tr_min_8k --valid_set cv_min_8k --test_sets tt_min_8k --fs 8k --lang en --ngpu 1 --local_data_opts '--sample_rate 8k --min_or_max min' --enh_config conf/tuning/train_enh_dprnn_tasnet.yaml --stage 6 --stop_stage 6 --enh_config conf/efficient_train/tisdiss/train_enh_tisdiss_tflocoformer_en-residual_en1x2_re1x6_l1+1x6.yaml --ngpu 1 --stage 6 "$@"; exit $?
