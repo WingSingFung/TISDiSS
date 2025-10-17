@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://visitor-badge.laobi.icu/badge?page_id=WingSingFung.TISDiSS" alt="访客统计" />
   <img src="https://img.shields.io/github/stars/WingSingFung/TISDiSS?style=social" alt="GitHub stars" />
-  <img alt="Static Badge" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" />
+  <img alt="Static Badge" src="https://img.shields.io/badge/license-MIT-blue.svg" />
 </p>
 
 Official implementation of **TISDiSS**, a scalable framework for discriminative source separation that enables flexible model scaling at both training and inference time.
