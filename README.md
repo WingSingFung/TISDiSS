@@ -69,6 +69,12 @@ Install the required dependencies:
 pip install -r requirements.txt
 ```
 
+Modify line 2 in `egs2/wsj0_2mix/enh1/enh.sh` for the espnet path
+
+```
+export PYTHONPATH="path/to/your/TISDiSS:$PYTHONPATH"
+```
+
 ### Inference
 
 Navigate to the example directory and run inference on your audio files:
@@ -83,6 +89,7 @@ python separate.py \
 ```
 
 **Parameters:**
+
 - `--model_path`: Path to the pre-trained model checkpoint
 - `--audio_path`: Path to input audio file or directory
 - `--audio_output_dir`: Directory where separated audio will be saved
@@ -136,14 +143,15 @@ Run data preparation and statistics collection:
 Train the TISDiSS model with the following command:
 
 ```bash
-CUDA_VISIBLE_DEVICES=1 ./run.sh \
+CUDA_VISIBLE_DEVICES=0,1 ./run.sh \
     --stage 6 \
     --stop_stage 6 \
     --enh_config conf/efficient_train/tisdiss/train_enh_tisdiss_tflocoformer_en-residual_en1x2_re1x6_l1+1x6.yaml \
-    --ngpu 1
+    --ngpu 2
 ```
 
 **Training Configuration:**
+
 - The model uses TF-Locoformer as the backbone
 - Training configuration: 2 Encoder blocks + 6 Reconstruction blocks
 - Adjust `--ngpu` to use multiple GPUs if available

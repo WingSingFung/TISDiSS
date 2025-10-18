@@ -12,13 +12,13 @@ num_workers: 16
 num_att_plot: 0
 dist_backend: nccl
 dist_init_method: env://
-dist_world_size: null
-dist_rank: null
+dist_world_size: 4
+dist_rank: 0
 local_rank: 0
-dist_master_addr: null
-dist_master_port: null
+dist_master_addr: localhost
+dist_master_port: 47947
 dist_launcher: null
-multiprocessing_distributed: false
+multiprocessing_distributed: true
 unused_parameters: false
 sharded_ddp: false
 use_deepspeed: false
@@ -226,4 +226,4 @@ diffusion_model_conf: {}
 required:
 - output_dir
 version: '202503'
-distributed: false
+distributed: true

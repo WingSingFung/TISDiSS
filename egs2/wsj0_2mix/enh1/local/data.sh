@@ -84,9 +84,9 @@ if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
     log "stage 1: Data simulation"
     for nsrc in 2; do
         # create mixtures
-        # local/wsj0_create_mixture.sh --min-or-max ${min_or_max} --sample-rate ${sample_rate} \
-        #     ${wsj_mix_scripts} ${WSJ0} ${wsj_full_wav} \
-        #     ${wsj_mix_wav} ${nsrc} || exit 1;
+        local/wsj0_create_mixture.sh --min-or-max ${min_or_max} --sample-rate ${sample_rate} \
+            ${wsj_mix_scripts} ${WSJ0} ${wsj_full_wav} \
+            ${wsj_mix_wav} ${nsrc} || exit 1;
         # create scp files (unsorted yet)
         local/wsj0_create_scp.sh --min-or-max ${min_or_max} --sample-rate ${sample_rate} \
             ${wsj_mix_scripts} ${WSJ0} ${wsj_full_wav} \
