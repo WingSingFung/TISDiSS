@@ -187,14 +187,11 @@ For additional examples, features, and the complete ESPnet-Enh toolkit, please r
 If you find this work useful in your research, please consider citing:
 
 ```bibtex
-@misc{feng2025tisdisstrainingtimeinferencetimescalable,
-      title={TISDiSS: A Training-Time and Inference-Time Scalable Framework for Discriminative Source Separation}, 
-      author={Yongsheng Feng and Yuetonghui Xu and Jiehui Luo and Hongjia Liu and Xiaobing Li and Feng Yu and Wei Li},
-      year={2025},
-      eprint={2509.15666},
-      archivePrefix={arXiv},
-      primaryClass={cs.SD},
-      url={https://arxiv.org/abs/2509.15666}, 
+@article{feng2025tisdiss,
+  title={TISDiSS: A Training-Time and Inference-Time Scalable Framework for Discriminative Source Separation},
+  author={Feng, Yongsheng and Xu, Yuetonghui and Luo, Jiehui and Liu, Hongjia and Li, Xiaobing and Yu, Feng and Li, Wei},
+  journal={arXiv preprint arXiv:2509.15666},
+  year={2025}
 }
 ```
 
